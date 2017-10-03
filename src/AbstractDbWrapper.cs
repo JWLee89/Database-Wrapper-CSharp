@@ -1,3 +1,6 @@
+/**
+ * @Author Jay Lee
+ */
 namespace DbWrapper {
     // Delegate for handling error logs
     public delegate void ErrorLoggingDelegate(Exception exc);
