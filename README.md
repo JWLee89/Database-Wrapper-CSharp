@@ -28,8 +28,18 @@ The results were as follows. This was tested with 10 times with different tables
 
 # API Documentation 
 
-For each of the databases, the following <code>public</code> methods will be available
+Please note that this is currently a work in progess. The API documentation will be continuously updated.
 
-``T SelectOne(string queryStr, FormatGenericData<T> genericDataDelegate)``: Used to select a single item from the database. This is often used with queries that are similar to the following
+## Public Methods
+
+For each of the databases, the following <code>public</code> methods will be available.
+
+``T SelectOne(string queryStr, FormatGenericData<T> genericDataDelegate)``
+
+Used to select a single item from the database. This is often used with queries that are similar to the following query
 
 ```SELECT COUNT(*) FROM TABLE_NAME;```
+
+`List<T> SelectList<T>(string queryStr, FormatGenericData<T> genericDataDelegate)`
+
+Use this to select multiple rows of data from the database.
