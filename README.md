@@ -30,5 +30,6 @@ The results were as follows. This was tested with 10 times with different tables
 
 For each of the databases, the following <code>public</code> methods will be available
 
-* <code>T SelectOne(string queryStr, FormatGenericData<T> genericDataDelegate)</code>: Used to select a single item from the database. This is often used with queries that are similar to the following
-  <code>SELECT COUNT(*) FROM TABLE_NAME;</code>
+''T SelectOne(string queryStr, FormatGenericData<T> genericDataDelegate)'': Used to select a single item from the database. This is often used with queries that are similar to the following
+
+'''SELECT COUNT(*) FROM TABLE_NAME;'''
