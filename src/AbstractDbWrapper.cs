@@ -129,7 +129,26 @@ namespace DbWrapper {
         private void CloseConnection(object sender, ElapsedEventArgs e)
         {
             ((Timer)sender).Close();
-            this._connection.Close();
+            CloseDbConnection();
+        }
+        
+        private void CloseDbConnection()
+        {
+            try
+            {
+                if (this._connection.State == ConnectionState.Open)
+                {
+                    this._connection.Close();
+                }
+            }
+            catch (DbException ex)
+            {
+                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
+            }
+            catch (Exception ex)
+            {
+                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
+            }
         }
 
         /**
@@ -555,7 +574,7 @@ namespace DbWrapper {
             {
                 if (_timer != null)
                     StopTimer();
-                _connection.Close();
+                CloseDbConnection();
             }
         }
 
