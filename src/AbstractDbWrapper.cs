@@ -131,25 +131,6 @@ namespace DbWrapper {
             ((Timer)sender).Close();
             CloseDbConnection();
         }
-        
-        private void CloseDbConnection()
-        {
-            try
-            {
-                if (this._connection.State == ConnectionState.Open)
-                {
-                    this._connection.Close();
-                }
-            }
-            catch (DbException ex)
-            {
-                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
-            }
-            catch (Exception ex)
-            {
-                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
-            }
-        }
 
         /**
           * ===========================================
@@ -177,6 +158,47 @@ namespace DbWrapper {
         protected void StopTimer()
         {
             this._timer.Stop();
+        }
+        
+         // Connection status check
+        public bool IsOpen()
+        {
+            return this._connection.State == ConnectionState.Open;
+        }
+
+        public void OpenDbConnection()
+        {
+            try
+            {
+                this._connection.Open();
+            }
+            catch (DbException ex)
+            {
+                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
+            }
+            catch (Exception ex)
+            {
+                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
+            }
+        }
+
+        public void CloseDbConnection()
+        {
+            try
+            {
+                if (this._connection.State == ConnectionState.Open)
+                {
+                    this._connection.Close();
+                }
+            }
+            catch (DbException ex)
+            {
+                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
+            }
+            catch (Exception ex)
+            {
+                PerformErrorLogging(this.ErrorLoggingDelegate, ex);
+            }
         }
 
         public virtual T SelectOne<T>(string queryStr, FormatGenericData<T> genericDataDelegate)
