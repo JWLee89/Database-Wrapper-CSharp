@@ -22,9 +22,11 @@ The insertion was tested on databases hosted on AWS and also on my Local PC (16 
 
 The results were as follows. This was tested with 10 times with different tables (note that performing insert on same table right away, with similar dataset, will result in performance increasing by 1-2 ms thanks to caching), each row having 7 columns. Note that results may differ based on different environment, but this should give users a brief overview on the performance of the insertion operation.
 
-- Oracle 8 ms per row 
-- Postgresql 18 ms per row
-- Mysql 22 ms per row
+- Oracle 1 ms per row 
+- Postgresql 1 ms per row
+- Mysql 1 ms per row
+
+Note: The initial connection operation in Postgresql takes 95 seconds. I am assuming Mysql will yield roughly the same result, with oracle connection likely to be slightly faster. When I have time, I will be sure to measure the performance on my local PC. If the keepalive feature is set to true, since connection will be kept open, additional insertions will only take 1 millisecond.
 
 # API Documentation 
 
