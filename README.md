@@ -26,7 +26,7 @@ The results were as follows. This was tested with 10 times with different tables
 - Postgresql 1 ms per row
 - Mysql 1 ms per row
 
-Note: The initial connection operation in Postgresql takes 95 seconds. I am assuming Mysql will yield roughly the same result, with oracle connection likely to be slightly faster. When I have time, I will be sure to measure the performance on my local PC. If the keepalive feature is set to true, since connection will be kept open, additional insertions will only take 1 millisecond.
+Note: The initial connection operation in Postgresql takes 95 milliseconds. I am assuming Mysql will yield roughly the same result, with oracle connection likely to be slightly faster. When I have time, I will be sure to measure the performance on my local PC. If the keepalive feature is set to true, since connection will be kept open, additional insertions will only take 1 millisecond.
 
 # API Documentation 
 
