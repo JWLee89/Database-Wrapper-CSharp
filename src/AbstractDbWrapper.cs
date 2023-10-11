@@ -47,7 +47,7 @@ namespace DbWrapper {
         * =============== Constructors ===============
         * ============================================
         */
-        protected NseDbWrapper(string serverUrl, string username, string password, string dbName, int port)
+        protected (string serverUrl, string username, string password, string dbName, int port)
         {
             ServerUrl = serverUrl;
             Username = username;
@@ -62,7 +62,7 @@ namespace DbWrapper {
             _connection = InitDbConnection(ConnectionString);
         }
 
-        protected NseDbWrapper(string serverUrl, string username, string password, string dbName, int port,
+        protected AbstractDbWrapper(string serverUrl, string username, string password, string dbName, int port,
             bool keepAlive)
         {
             ServerUrl = serverUrl;
@@ -78,7 +78,7 @@ namespace DbWrapper {
             _connection = InitDbConnection(ConnectionString);
         }
 
-        protected NseDbWrapper(string serverUrl, string username, string password, string dbName, int port,
+        protected AbstractDbWrapper(string serverUrl, string username, string password, string dbName, int port,
             bool keepAlive, long timeOutMs)
         {
             ServerUrl = serverUrl;
@@ -99,9 +99,9 @@ namespace DbWrapper {
         private void AddParamsForInsert(DbCommand command, object itemToInsert)
         {
             // Prepare parameters using reflection to get properties.
-            // Do not get properties with NseDbWrapperAttributes on insert
+            // Do not get properties with AbstractDbWrapperAttributes on insert
             IEnumerable<PropertyInfo> objProperties = itemToInsert.GetType().GetProperties()
-                .Where(prop => !prop.IsDefined(typeof(NseDbWrapperAttributes), false));
+                .Where(prop => !prop.IsDefined(typeof(AbstractDbWrapperAttributes), false));
             foreach (PropertyInfo prop in objProperties)
             {                
                 command.Parameters.Add(CreateSqlParameter(prop.Name, prop.GetValue(itemToInsert, null)));
